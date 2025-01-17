@@ -10,8 +10,17 @@ public class Package {
     private List<Interface> interfaces;
     private List<Enumeration> enumerations;
     private List<Annotation> annotations;
+    private List<Package> sousPackages;
 
-    public Package() {
+    public List<Package> getSousPackages() {
+		return sousPackages;
+	}
+
+	public void setSousPackages(List<Package> sousPackages) {
+		this.sousPackages = sousPackages;
+	}
+
+	public Package() {
         this.classes = new Vector<>();
         this.interfaces = new Vector<>();
         this.enumerations = new Vector<>();
@@ -26,8 +35,8 @@ public class Package {
         this.annotations = new Vector<>();
     }
 
-    public void addClass(Classe classe) {
-        classes.add(classe);
+    public void addClass(Classe className) {
+        classes.add(className);
     }
 
     public void addInterface(Interface iface) {
@@ -65,4 +74,22 @@ public class Package {
     public void setName(String name) {
         this.name = name;
     }
+
+	public void setClasses(List<Classe> classes) {
+		this.classes = classes;
+	}
+
+	public void setInterfaces(List<Interface> interfaces) {
+		this.interfaces = interfaces;
+	}
+
+	public void setEnumerations(List<Enumeration> enumerations) {
+		this.enumerations = enumerations;
+	}
+
+	public void setAnnotations(List<Annotation> annotations) {
+		this.annotations = annotations;
+	}
+
+	
 }
