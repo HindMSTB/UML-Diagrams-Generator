@@ -1,35 +1,45 @@
 package org.mql.java.models;
-
-import java.util.List;
 import java.util.Vector;
 
 public class Annotation {
 	
     private String name;
-    private List<String> attributes;
-
-    public Annotation() {
-        this.attributes = new Vector<>();
-    }
+    private Vector<String> attributes;
+    private Vector<Relation> relationsUtilisation;  // Usage relations
+    private Vector<Relation> relationAgrégation;    // Aggregation relations
 
     public Annotation(String name) {
         this.name = name;
         this.attributes = new Vector<>();
+        this.relationsUtilisation = new Vector<>();
+        this.relationAgrégation = new Vector<>();
     }
 
     public void addAttribute(String attribute) {
         attributes.add(attribute);
     }
 
-    public List<String> getAttributes() {
-        return attributes;
+    public void addRelationUtilisation(Relation relation) {
+        relationsUtilisation.add(relation);
+    }
+
+    public void addRelationAgrégation(Relation relation) {
+        relationAgrégation.add(relation);
+    }
+
+    public Vector<Relation> getRelationsUtilisation() {
+        return relationsUtilisation;
+    }
+
+    public Vector<Relation> getRelationAgrégation() {
+        return relationAgrégation;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Vector<String> getAttributes() {
+        return attributes;
     }
 }

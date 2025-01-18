@@ -6,9 +6,11 @@ import java.util.Vector;
 public class Enumeration {
     private String name;
     private List<String> constants;
+    private Vector<Relation> relationsUtilisation; 
 
     public Enumeration() {
         this.constants = new Vector<>();
+        this.relationsUtilisation = new Vector<>();
     }
 
     public Enumeration(String name) {
@@ -30,5 +32,9 @@ public class Enumeration {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addRelationUtilisation(Relation relation) {
+        relationsUtilisation.add(relation);
     }
 }
