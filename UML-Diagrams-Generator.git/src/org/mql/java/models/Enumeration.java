@@ -7,10 +7,12 @@ public class Enumeration {
     private String name;
     private List<String> constants;
     private Vector<Relation> relationsUtilisation; 
+    private Vector<MethodInfos> methods;
 
     public Enumeration() {
         this.constants = new Vector<>();
         this.relationsUtilisation = new Vector<>();
+        this.methods = new Vector<>();
     }
 
     public Enumeration(String name) {
@@ -36,5 +38,13 @@ public class Enumeration {
 
     public void addRelationUtilisation(Relation relation) {
         relationsUtilisation.add(relation);
+    }
+    
+    public Vector<MethodInfos> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(Vector<MethodInfos> methods) {
+        this.methods = methods;
     }
 }

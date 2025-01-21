@@ -1,9 +1,9 @@
 package org.mql.java.models;
 
 public class Relation {
-    private String source;       // Classe source
-    private String destination;  // Classe destination
-    private String type;         // Type de relation : inheritance, aggregation, etc.
+    private String source;       
+    private String destination;  
+    private String type;        
 
     public Relation(String source, String destination, String type) {
         this.source = source;

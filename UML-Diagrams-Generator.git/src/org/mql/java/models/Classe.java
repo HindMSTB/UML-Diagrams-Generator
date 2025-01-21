@@ -11,7 +11,7 @@ public class Classe {
     private Vector<Relation> relationUtilisation;
     private Vector<Relation> relationAgrégation;
 
-    // Constructor
+    
     public Classe(String name) {
         this.name = name;
         this.fields = new Vector<>();
@@ -79,7 +79,7 @@ public class Classe {
         this.relationAgrégation = relationAgrégation;
     }
 
-    // Add methods and fields
+  
     public void addField(String field) {
         this.fields.add(field);
     }
@@ -88,7 +88,7 @@ public class Classe {
         this.methods.add(method);
     }
 
-    // Add relations
+   
     public void addRelationHeritage(Relation relation) {
         this.relationsHeritage.add(relation);
     }

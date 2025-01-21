@@ -5,8 +5,8 @@ public class Interface {
 	
     private String name;
     private Vector<MethodInfos> methods;
-    private Vector<Relation> relationsHeritage;  // Inheritance relations
-    private Vector<Relation> relationUtilisation; // Usage relations
+    private Vector<Relation> relationsHeritage;  
+    private Vector<Relation> relationUtilisation; 
 
     public Interface(String name) {
         this.name = name;
@@ -17,6 +17,9 @@ public class Interface {
 
     public void addMethod(MethodInfos method) {
         methods.add(method);
+    }
+    public Vector<MethodInfos> getMethods() {
+        return methods;
     }
 
     public void addRelationHeritage(Relation relation) {
@@ -39,7 +42,5 @@ public class Interface {
         return name;
     }
 
-    public Vector<MethodInfos> getMethods() {
-        return methods;
-    }
+   
 }

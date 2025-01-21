@@ -5,8 +5,10 @@ public class Annotation {
 	
     private String name;
     private Vector<String> attributes;
-    private Vector<Relation> relationsUtilisation;  // Usage relations
-    private Vector<Relation> relationAgrégation;    // Aggregation relations
+    private Vector<Relation> relationsUtilisation; 
+    private Vector<Relation> relationAgrégation; 
+    private Vector<MethodInfos> methods;
+    
 
     public Annotation(String name) {
         this.name = name;

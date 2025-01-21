@@ -1,6 +1,7 @@
 package org.mql.java.services;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
 import org.mql.java.models.*;
@@ -59,7 +60,7 @@ public class ProjectExplorer {
 
             if (cls.isInterface() && !cls.isAnnotation()) {
                 Interface inter = new Interface(nomElement);
-                for (java.lang.reflect.Method method : cls.getDeclaredMethods()) {
+                for (Method method : cls.getDeclaredMethods()) {
                     MethodInfos methodInfo = new MethodInfos(method);
                     inter.addMethod(methodInfo);
                 }
@@ -73,27 +74,21 @@ public class ProjectExplorer {
             } else if (cls.isAnnotation()) {
                 Annotation annotation = new Annotation(nomElement);
 
-                for (java.lang.reflect.Method method : cls.getDeclaredMethods()) {
-                    String attributeName = method.getName();
-                    Object defaultValue = method.getDefaultValue();
-
-                    String attributeDescription;
-                    if (defaultValue != null) {
-                        attributeDescription = attributeName + " : " + defaultValue.toString();
-                    } else {
-                        attributeDescription = attributeName + " ";
+                for (Method method : cls.getDeclaredMethods()) {
+                    if (method.getDefaultValue() != null) {
+                        String attributeName = method.getName();
+                        Object defaultValue = method.getDefaultValue();
+                        String attributeDescription = attributeName + " : " + defaultValue.toString();
+                        annotation.addAttribute(attributeDescription);
                     }
-
-                    annotation.addAttribute(attributeDescription);
                 }
 
                 packageActuel.addAnnotation(annotation);
             } else {
                 Classe classe = new Classe(nomElement);
-
                 ajouterChamps(classe, cls);
 
-                for (java.lang.reflect.Method method : cls.getDeclaredMethods()) {
+                for (Method method : cls.getDeclaredMethods()) {
                     if (!method.getName().startsWith("lambda$")) {
                         MethodInfos methodInfo = new MethodInfos(method);
                         classe.addMethod(methodInfo);
@@ -134,9 +129,6 @@ public class ProjectExplorer {
 
         Project projet = explorateur.getProject();
 
-        RelationExplorer relationExplorer = new RelationExplorer("org.mql.java");
-        List<Relation> relations = relationExplorer.genererRelations(projet);
-
         System.out.println("=== Exploration du Projet ===");
 
         projet.getPackages().forEach(pkg -> {
@@ -144,30 +136,24 @@ public class ProjectExplorer {
 
             pkg.getClasses().forEach(classe -> {
                 System.out.println("  Classe: " + classe.getName());
-                classe.getFields().forEach(field -> System.out.println("    Field: " + field));
-                classe.getMethods().forEach(method -> System.out.println("    Method: " + method.toString()));
-                classe.getRelationsHeritage().forEach(method -> System.out.println("  relation " + classe.getRelationsHeritage()));
+                classe.getMethods().forEach(method -> 
+                    System.out.println("    " + method.toString())
+                );
             });
 
             pkg.getInterfaces().forEach(inter -> {
                 System.out.println("  Interface: " + inter.getName());
-                inter.getMethods().forEach(method -> System.out.println("    Method: " + method.toString()));
-            });
-
-            pkg.getAnnotations().forEach(annotation -> {
-                System.out.println("  Annotation: " + annotation.getName());
-                annotation.getAttributes().forEach(attr -> System.out.println("    Attribute: " + attr));
-                annotation.getRelationsUtilisation().forEach(attr -> System.out.println("    relation: " + annotation.getRelationsUtilisation()));
+                inter.getMethods().forEach(method -> 
+                    System.out.println("    " + method.toString())
+                );
             });
 
             pkg.getEnumerations().forEach(enumeration -> {
                 System.out.println("  Enumeration: " + enumeration.getName());
-                System.out.println( enumeration.getConstants());
+                enumeration.getConstants().forEach(constant -> 
+                    System.out.println("    Constant: " + constant)
+                );
             });
         });
-
-        System.out.println("\n=== Relations dans le Projet ===");
-        relations.forEach(rel -> System.out.println(
-                rel.getSource() + " -> " + rel.getDestination() + " [" + rel.getType() + "]"));
     }
 }
