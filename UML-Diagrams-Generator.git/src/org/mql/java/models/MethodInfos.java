@@ -41,8 +41,21 @@
     
 
 
-    // Getters and setters
-    public String getName() {
+        public MethodInfos(String name) {
+            this.name = name;
+            this.returnType = "void"; 
+            this.methodVisibility = "public"; 
+            this.parameters = "()"; 
+        }
+
+       
+    public MethodInfos(String methodName, String returnType2, String visibility) {
+    	 this.name = methodName;
+         this.returnType = returnType2; 
+         this.methodVisibility = visibility; 
+		}
+
+	public String getName() {
         return name;
     }
 

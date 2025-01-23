@@ -44,4 +44,35 @@ public class Annotation {
     public Vector<String> getAttributes() {
         return attributes;
     }
+    
+    public void addMethod(MethodInfos method) {
+        methods.add(method);
+    }
+
+	public Vector<MethodInfos> getMethods() {
+		return methods;
+	}
+
+	public void setMethods(Vector<MethodInfos> methods) {
+		this.methods = methods;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAttributes(Vector<String> attributes) {
+		this.attributes = attributes;
+	}
+
+	public void setRelationsUtilisation(Vector<Relation> relationsUtilisation) {
+		this.relationsUtilisation = relationsUtilisation;
+	}
+
+	public void setRelationAgrégation(Vector<Relation> relationAgrégation) {
+		this.relationAgrégation = relationAgrégation;
+	}
+	
+	
 }
+

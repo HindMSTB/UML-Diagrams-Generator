@@ -42,5 +42,21 @@ public class Interface {
         return name;
     }
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMethods(Vector<MethodInfos> methods) {
+		this.methods = methods;
+	}
+
+	public void setRelationsHeritage(Vector<Relation> relationsHeritage) {
+		this.relationsHeritage = relationsHeritage;
+	}
+
+	public void setRelationUtilisation(Vector<Relation> relationUtilisation) {
+		this.relationUtilisation = relationUtilisation;
+	}
+
    
 }

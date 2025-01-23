@@ -122,38 +122,5 @@ public class ProjectExplorer {
         return projet;
     }
 
-    public static void main(String[] args) {
-        String cheminDuProjet = "src";
-
-        ProjectExplorer explorateur = new ProjectExplorer(cheminDuProjet);
-
-        Project projet = explorateur.getProject();
-
-        System.out.println("=== Exploration du Projet ===");
-
-        projet.getPackages().forEach(pkg -> {
-            System.out.println("\nPackage: " + pkg.getName());
-
-            pkg.getClasses().forEach(classe -> {
-                System.out.println("  Classe: " + classe.getName());
-                classe.getMethods().forEach(method -> 
-                    System.out.println("    " + method.toString())
-                );
-            });
-
-            pkg.getInterfaces().forEach(inter -> {
-                System.out.println("  Interface: " + inter.getName());
-                inter.getMethods().forEach(method -> 
-                    System.out.println("    " + method.toString())
-                );
-            });
-
-            pkg.getEnumerations().forEach(enumeration -> {
-                System.out.println("  Enumeration: " + enumeration.getName());
-                enumeration.getConstants().forEach(constant -> 
-                    System.out.println("    Constant: " + constant)
-                );
-            });
-        });
-    }
-}
+    
+ }
