@@ -5,14 +5,13 @@ import org.mql.java.models.*;
 import org.mql.java.models.Package;
 import org.mql.java.services.ProjectExplorer;
 import org.mql.java.services.RelationExplorer;
-
 import java.util.List;
 
-public class XmlFileGenerator {
+public class XMLFileGenerator {
     private final String cheminFichier;
     private int indentationLevel = 0;
 
-    public XmlFileGenerator(String cheminFichier) {
+    public XMLFileGenerator(String cheminFichier) {
         this.cheminFichier = cheminFichier;
         creerFichierXmlVide(); 
     }
@@ -82,22 +81,92 @@ public class XmlFileGenerator {
             writeIndented(writer, "<Package name=\"" + pkg.getName() + "\">");
             incrementIndentation();
 
-            for (Classe classe : pkg.getClasses()) {
-                writeIndented(writer, "<Classe name=\"" + classe.getName() + "\">");
+            // Ajouter les classes
+            if (!pkg.getClasses().isEmpty()) {
+                writeIndented(writer, "<Classes>");
                 incrementIndentation();
+                for (Classe classe : pkg.getClasses()) {
+                    writeIndented(writer, "<Classe name=\"" + classe.getName() + "\">");
+                    incrementIndentation();
 
-                for (String field : classe.getFields()) {
-                    writeIndented(writer, "<Field>" + field + "</Field>");
+                    for (String field : classe.getFields()) {
+                        writeIndented(writer, "<Field>" + field + "</Field>");
+                    }
+
+                    for (MethodInfos method : classe.getMethods()) {
+                        writeMethod(writer, method);
+                    }
+
+                    ajouterRelations(writer, classe, relations);
+
+                    decrementIndentation();
+                    writeIndented(writer, "</Classe>");
                 }
-
-                for (MethodInfos method : classe.getMethods()) {
-                    writeMethod(writer, method);
-                }
-
-                ajouterRelations(writer, classe, relations);
-
                 decrementIndentation();
-                writeIndented(writer, "</Classe>");
+                writeIndented(writer, "</Classes>");
+            }
+
+            
+            if (!pkg.getInterfaces().isEmpty()) {
+                writeIndented(writer, "<Interfaces>");
+                incrementIndentation();
+                for (Interface inter : pkg.getInterfaces()) {
+                    writeIndented(writer, "<Interface name=\"" + inter.getName() + "\">");
+                    incrementIndentation();
+
+                    for (MethodInfos method : inter.getMethods()) {
+                        writeMethod(writer, method);
+                    }
+
+                    ajouterRelations(writer, inter, relations);
+
+                    decrementIndentation();
+                    writeIndented(writer, "</Interface>");
+                }
+                decrementIndentation();
+                writeIndented(writer, "</Interfaces>");
+            }
+
+           
+            if (!pkg.getEnumerations().isEmpty()) {
+                writeIndented(writer, "<Enumerations>");
+                incrementIndentation();
+                for (Enumeration enumeration : pkg.getEnumerations()) {
+                    writeIndented(writer, "<Enumeration name=\"" + enumeration.getName() + "\">");
+                    incrementIndentation();
+
+                    for (String constant : enumeration.getConstants()) {
+                        writeIndented(writer, "<Constant>" + constant + "</Constant>");
+                    }
+
+                    ajouterRelations(writer, enumeration, relations);
+
+                    decrementIndentation();
+                    writeIndented(writer, "</Enumeration>");
+                }
+                decrementIndentation();
+                writeIndented(writer, "</Enumerations>");
+            }
+
+            
+            if (!pkg.getAnnotations().isEmpty()) {
+                writeIndented(writer, "<Annotations>");
+                incrementIndentation();
+                for (Annotation annotation : pkg.getAnnotations()) {
+                    writeIndented(writer, "<Annotation name=\"" + annotation.getName() + "\">");
+                    incrementIndentation();
+
+                    for (String attribute : annotation.getAttributes()) {
+                        writeIndented(writer, "<Attribute>" + attribute + "</Attribute>");
+                    }
+
+                    ajouterRelations(writer, annotation, relations);
+
+                    decrementIndentation();
+                    writeIndented(writer, "</Annotation>");
+                }
+                decrementIndentation();
+                writeIndented(writer, "</Annotations>");
             }
 
             decrementIndentation();
@@ -169,23 +238,5 @@ public class XmlFileGenerator {
         }
     }
 
-    public static void main(String[] args) {
-        String cheminDuProjet = "src";
-        String cheminFichierXml = "resources/project.xml";
-
-        ProjectExplorer explorateur = new ProjectExplorer(cheminDuProjet);
-        Project projet = explorateur.getProject();
-        RelationExplorer relationExplorer = new RelationExplorer("org.mql.java");
-        List<Relation> relations = relationExplorer.genererRelations(projet);
-
-        XmlFileGenerator xmlGenerator = new XmlFileGenerator(cheminFichierXml);
-        xmlGenerator.ajouterDeclarationXmlAuDebut();
-
-        for (Package pkg : projet.getPackages()) {
-            xmlGenerator.ajouterPackageAuXml(pkg, relations);
-        }
-
-        xmlGenerator.fermerXml();
-        System.out.println("Fichier XML généré avec succès : " + cheminFichierXml);
-    }
+  
 }
