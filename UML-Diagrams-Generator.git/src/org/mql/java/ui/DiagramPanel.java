@@ -23,8 +23,7 @@ public class DiagramPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
+       
         drawPackages(g2d);
         drawRelations(g2d);
         drawNodes(g2d);

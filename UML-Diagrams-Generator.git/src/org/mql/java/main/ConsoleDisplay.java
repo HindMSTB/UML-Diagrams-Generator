@@ -24,9 +24,9 @@ public class ConsoleDisplay {
     public ConsoleDisplay(String projectPath, String xmlFilePath) {
         this.projectPath = projectPath;
         this.xmlFilePath = xmlFilePath;
-        //exploreProject();
+        exploreProject();
         generateXMLFile();
-        //parserXMLFile();
+        parserXMLFile();
     }
 
     private void exploreProject() {
@@ -250,12 +250,6 @@ public class ConsoleDisplay {
         }
     }
 
-    /*
-     °Réaliser une interface Swing permettant une représentation graphique de l’ensemble des
-diagrammes générés à la question N 1.
- Etudier la possibilité de générer une représentation XMI (XML Meta Interchange) qui est
-un standard de l’OMG. Cette étape sera accompagnée par une étude du standard XMI (voir
-question N° 2)*/
     public static void main(String[] args) {
         new ConsoleDisplay("src", "resources/project.xml");
     }
