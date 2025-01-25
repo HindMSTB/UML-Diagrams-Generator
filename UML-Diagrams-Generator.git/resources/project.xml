@@ -9,13 +9,13 @@
       <Field>matiereEnseignee : Matiere (private)</Field>
       <Field>niveauEnseigne : NiveauScolaire (private)</Field>
       <Method>
-        <name>getIdentifiant</name>
-        <returnType>String</returnType>
+        <name>afficherIdentite</name>
+        <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>afficherIdentite</name>
-        <returnType>void</returnType>
+        <name>getIdentifiant</name>
+        <returnType>String</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Relation>
@@ -29,6 +29,10 @@
       <Relation>
         <type>Agregation</type>
         <destination>NiveauScolaire</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Profession</destination>
       </Relation>
     </Classe>
     <Classe name="Etudiant">
@@ -37,13 +41,13 @@
       <Field>niveau : NiveauScolaire (private)</Field>
       <Field>matierePreferee : Matiere (private)</Field>
       <Method>
-        <name>getIdentifiant</name>
-        <returnType>String</returnType>
+        <name>afficherIdentite</name>
+        <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>afficherIdentite</name>
-        <returnType>void</returnType>
+        <name>getIdentifiant</name>
+        <returnType>String</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Relation>
@@ -58,18 +62,22 @@
         <type>Agregation</type>
         <destination>Matiere</destination>
       </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Profession</destination>
+      </Relation>
     </Classe>
   </Classes>
   <Interfaces>
     <Interface name="Personne">
       <Method>
-        <name>getIdentifiant</name>
-        <returnType>String</returnType>
+        <name>afficherIdentite</name>
+        <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>afficherIdentite</name>
-        <returnType>void</returnType>
+        <name>getIdentifiant</name>
+        <returnType>String</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
     </Interface>
@@ -102,14 +110,6 @@
       <Field>projectPath : String (private)</Field>
       <Field>xmlFilePath : String (private)</Field>
       <Method>
-        <name>main</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>String[]</parameter>
-        </parameters>
-      </Method>
-      <Method>
         <name>exploreProject</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
@@ -124,6 +124,25 @@
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
       </Method>
+      <Method>
+        <name>main</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String[]</parameter>
+        </parameters>
+      </Method>
+    </Classe>
+    <Classe name="UMLDiagramApp">
+      <Field>project : Project (private)</Field>
+      <Method>
+        <name>main</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String[]</parameter>
+        </parameters>
+      </Method>
     </Classe>
   </Classes>
 </Package>
@@ -135,6 +154,64 @@
       <Field>relationsUtilisation : Vector (private)</Field>
       <Field>relationAgrégation : Vector (private)</Field>
       <Field>methods : Vector (private)</Field>
+      <Method>
+        <name>getRelationsUtilisation</name>
+        <returnType>Vector</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>setAttributes</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Vector</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>addRelationUtilisation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Relation</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getRelationAgrégation</name>
+        <returnType>Vector</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>addRelationAgrégation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Relation</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setRelationAgrégation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Vector</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setRelationsUtilisation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Vector</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setMethods</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Vector</parameter>
+        </parameters>
+      </Method>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -174,13 +251,52 @@
         <parameter>String</parameter>
         </parameters>
       </Method>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>MethodInfos</destination>
+      </Relation>
+    </Classe>
+    <Classe name="Classe">
+      <Field>name : String (private)</Field>
+      <Field>fields : Vector (private)</Field>
+      <Field>methods : Vector (private)</Field>
+      <Field>relationsHeritage : Vector (private)</Field>
+      <Field>relationImplementation : Vector (private)</Field>
+      <Field>relationUtilisation : Vector (private)</Field>
+      <Field>relationAgrégation : Vector (private)</Field>
       <Method>
-        <name>getRelationsUtilisation</name>
+        <name>getRelationUtilisation</name>
         <returnType>Vector</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>setRelationsUtilisation</name>
+        <name>getRelationImplementation</name>
+        <returnType>Vector</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>getRelationsHeritage</name>
+        <returnType>Vector</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>addField</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setRelationUtilisation</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
@@ -196,7 +312,7 @@
         </parameters>
       </Method>
       <Method>
-        <name>setRelationAgrégation</name>
+        <name>setRelationsHeritage</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
@@ -209,6 +325,30 @@
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
+        <name>setRelationImplementation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Vector</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>addRelationHeritage</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Relation</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>addRelationImplementation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Relation</parameter>
+        </parameters>
+      </Method>
+      <Method>
         <name>addRelationAgrégation</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
@@ -217,7 +357,7 @@
         </parameters>
       </Method>
       <Method>
-        <name>setAttributes</name>
+        <name>setRelationAgrégation</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
@@ -232,27 +372,6 @@
         <parameter>Vector</parameter>
         </parameters>
       </Method>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>MethodInfos</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-    </Classe>
-    <Classe name="Classe">
-      <Field>name : String (private)</Field>
-      <Field>fields : Vector (private)</Field>
-      <Field>methods : Vector (private)</Field>
-      <Field>relationsHeritage : Vector (private)</Field>
-      <Field>relationImplementation : Vector (private)</Field>
-      <Field>relationUtilisation : Vector (private)</Field>
-      <Field>relationAgrégation : Vector (private)</Field>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -292,27 +411,48 @@
         <parameter>Vector</parameter>
         </parameters>
       </Method>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>MethodInfos</destination>
+      </Relation>
+    </Classe>
+    <Classe name="Enumeration">
+      <Field>name : String (private)</Field>
+      <Field>constants : List (private)</Field>
+      <Field>relationsUtilisation : Vector (private)</Field>
+      <Field>methods : Vector (private)</Field>
       <Method>
-        <name>getRelationsHeritage</name>
+        <name>getRelationsUtilisation</name>
         <returnType>Vector</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>getRelationUtilisation</name>
-        <returnType>Vector</returnType>
+        <name>getConstants</name>
+        <returnType>List</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>getRelationImplementation</name>
-        <returnType>Vector</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>addField</name>
+        <name>setConstants</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
-        <parameter>String</parameter>
+        <parameter>List</parameter>
         </parameters>
       </Method>
       <Method>
@@ -324,64 +464,11 @@
         </parameters>
       </Method>
       <Method>
-        <name>setRelationAgrégation</name>
+        <name>setRelationsUtilisation</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
         <parameter>Vector</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>getRelationAgrégation</name>
-        <returnType>Vector</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>setRelationImplementation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Vector</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>addRelationHeritage</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Relation</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setRelationUtilisation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Vector</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>addRelationAgrégation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Relation</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setRelationsHeritage</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Vector</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>addRelationImplementation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Relation</parameter>
         </parameters>
       </Method>
       <Method>
@@ -392,32 +479,6 @@
         <parameter>Vector</parameter>
         </parameters>
       </Method>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>MethodInfos</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-    </Classe>
-    <Classe name="Enumeration">
-      <Field>name : String (private)</Field>
-      <Field>constants : List (private)</Field>
-      <Field>relationsUtilisation : Vector (private)</Field>
-      <Field>methods : Vector (private)</Field>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -444,13 +505,28 @@
         <parameter>String</parameter>
         </parameters>
       </Method>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+    </Classe>
+    <Classe name="Interface">
+      <Field>name : String (private)</Field>
+      <Field>methods : Vector (private)</Field>
+      <Field>relationsHeritage : Vector (private)</Field>
+      <Field>relationUtilisation : Vector (private)</Field>
       <Method>
-        <name>getRelationsUtilisation</name>
+        <name>getRelationUtilisation</name>
         <returnType>Vector</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>setRelationsUtilisation</name>
+        <name>getRelationsHeritage</name>
+        <returnType>Vector</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>setRelationUtilisation</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
@@ -466,16 +542,19 @@
         </parameters>
       </Method>
       <Method>
-        <name>getConstants</name>
-        <returnType>List</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>setConstants</name>
+        <name>setRelationsHeritage</name>
         <returnType>void</returnType>
         <methodVisibility>public</methodVisibility>
         <parameters>
-        <parameter>List</parameter>
+        <parameter>Vector</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>addRelationHeritage</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Relation</parameter>
         </parameters>
       </Method>
       <Method>
@@ -486,16 +565,6 @@
         <parameter>Vector</parameter>
         </parameters>
       </Method>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-    </Classe>
-    <Classe name="Interface">
-      <Field>name : String (private)</Field>
-      <Field>methods : Vector (private)</Field>
-      <Field>relationsHeritage : Vector (private)</Field>
-      <Field>relationUtilisation : Vector (private)</Field>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -522,67 +591,17 @@
         <parameter>MethodInfos</parameter>
         </parameters>
       </Method>
-      <Method>
-        <name>getRelationsHeritage</name>
-        <returnType>Vector</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>getRelationUtilisation</name>
-        <returnType>Vector</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>addRelationUtilisation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Relation</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>addRelationHeritage</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Relation</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setRelationUtilisation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Vector</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setRelationsHeritage</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Vector</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setMethods</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Vector</parameter>
-        </parameters>
-      </Method>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Relation</destination>
+      </Relation>
       <Relation>
         <type>Utilisation</type>
         <destination>MethodInfos</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
-      </Relation>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Relation</destination>
       </Relation>
     </Classe>
     <Classe name="MethodInfos">
@@ -590,6 +609,35 @@
       <Field>returnType : String (private)</Field>
       <Field>methodVisibility : String (private)</Field>
       <Field>parameters : String (private)</Field>
+      <Method>
+        <name>getMethodVisibility</name>
+        <returnType>String</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>getVisibility</name>
+        <returnType>String</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Method</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setReturnType</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setMethodVisibility</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
+        </parameters>
+      </Method>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -626,35 +674,6 @@
         <parameter>String</parameter>
         </parameters>
       </Method>
-      <Method>
-        <name>getMethodVisibility</name>
-        <returnType>String</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>setMethodVisibility</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>String</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setReturnType</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>String</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>getVisibility</name>
-        <returnType>String</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Method</parameter>
-        </parameters>
-      </Method>
     </Classe>
     <Classe name="Package">
       <Field>name : String (private)</Field>
@@ -663,6 +682,72 @@
       <Field>enumerations : List (private)</Field>
       <Field>annotations : List (private)</Field>
       <Field>sousPackages : List (private)</Field>
+      <Method>
+        <name>getEnumerations</name>
+        <returnType>List</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>addAnnotation</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Annotation</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>addInterface</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Interface</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>addEnumeration</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Enumeration</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getSousPackages</name>
+        <returnType>List</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>setSousPackages</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setEnumerations</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setAnnotations</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>setClasses</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -707,76 +792,6 @@
         <parameter>List</parameter>
         </parameters>
       </Method>
-      <Method>
-        <name>addAnnotation</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Annotation</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>addInterface</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Interface</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>getEnumerations</name>
-        <returnType>List</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>addEnumeration</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Enumeration</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>getSousPackages</name>
-        <returnType>List</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>setSousPackages</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setAnnotations</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setEnumerations</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>setClasses</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Relation>
-        <type>Utilisation</type>
-        <destination>Classe</destination>
-      </Relation>
       <Relation>
         <type>Utilisation</type>
         <destination>Annotation</destination>
@@ -789,10 +804,22 @@
         <type>Utilisation</type>
         <destination>Enumeration</destination>
       </Relation>
+      <Relation>
+        <type>Utilisation</type>
+        <destination>Classe</destination>
+      </Relation>
     </Classe>
     <Classe name="Project">
       <Field>name : String (private)</Field>
       <Field>packages : List (private)</Field>
+      <Method>
+        <name>addPackage</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>Package</parameter>
+        </parameters>
+      </Method>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -811,14 +838,6 @@
         <parameter>String</parameter>
         </parameters>
       </Method>
-      <Method>
-        <name>addPackage</name>
-        <returnType>void</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>Package</parameter>
-        </parameters>
-      </Method>
       <Relation>
         <type>Utilisation</type>
         <destination>Package</destination>
@@ -828,6 +847,11 @@
       <Field>source : String (private)</Field>
       <Field>destination : String (private)</Field>
       <Field>type : String (private)</Field>
+      <Method>
+        <name>getDestination</name>
+        <returnType>String</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
       <Method>
         <name>toString</name>
         <returnType>String</returnType>
@@ -840,11 +864,6 @@
       </Method>
       <Method>
         <name>getSource</name>
-        <returnType>String</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
-      <Method>
-        <name>getDestination</name>
         <returnType>String</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
@@ -861,14 +880,20 @@
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>ajouterElementAuPackage</name>
-        <returnType>void</returnType>
+        <name>aDesElements</name>
+        <returnType>boolean</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
         <parameter>Package</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>explorerLeProjet</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
         <parameter>String</parameter>
-        <parameter>File</parameter>
-        <parameter>String</parameter>
+        <parameter>Project</parameter>
         </parameters>
       </Method>
       <Method>
@@ -891,20 +916,14 @@
         </parameters>
       </Method>
       <Method>
-        <name>aDesElements</name>
-        <returnType>boolean</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Package</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>explorerLeProjet</name>
+        <name>ajouterElementAuPackage</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
+        <parameter>Package</parameter>
         <parameter>String</parameter>
-        <parameter>Project</parameter>
+        <parameter>File</parameter>
+        <parameter>String</parameter>
         </parameters>
       </Method>
     </Classe>
@@ -919,46 +938,6 @@
         </parameters>
       </Method>
       <Method>
-        <name>traiterInterfacesImplémentées</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Class</parameter>
-        <parameter>Classe</parameter>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>traiterRelationsClasse</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Package</parameter>
-        <parameter>Classe</parameter>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>traiterRelationsInterface</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Package</parameter>
-        <parameter>Interface</parameter>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>traiterRelationsAnnotation</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Package</parameter>
-        <parameter>Annotation</parameter>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
         <name>traiterHeritage</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
@@ -969,7 +948,7 @@
         </parameters>
       </Method>
       <Method>
-        <name>traiterChamps</name>
+        <name>traiterMethodes</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
@@ -979,7 +958,7 @@
         </parameters>
       </Method>
       <Method>
-        <name>traiterMethodes</name>
+        <name>traiterChamps</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
@@ -997,11 +976,231 @@
         </parameters>
       </Method>
       <Method>
+        <name>traiterRelationsInterface</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Package</parameter>
+        <parameter>Interface</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>ajouterRelationAnnotation</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
+        <parameter>Annotation</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>traiterRelationsClasse</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Package</parameter>
+        <parameter>Classe</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>traiterRelationsAnnotation</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Package</parameter>
+        <parameter>Annotation</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>traiterInterfacesImplémentées</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Class</parameter>
+        <parameter>Classe</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>traiterToutesLesAnnotations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Class</parameter>
+        <parameter>Classe</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
         <name>getNomElement</name>
         <returnType>String</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
         <parameter>Object</parameter>
+        </parameters>
+      </Method>
+    </Classe>
+  </Classes>
+</Package>
+<Package name="org.mql.java.ui">
+  <Classes>
+    <Classe name="DiagramPanel">
+      <Field>project : Project (private)</Field>
+      <Field>nodePositions : Map (private)</Field>
+      <Method>
+        <name>getClassHeight</name>
+        <returnType>int</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Enumeration</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getClassHeight</name>
+        <returnType>int</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Classe</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getClassHeight</name>
+        <returnType>int</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Interface</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getClassHeight</name>
+        <returnType>int</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Annotation</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawRelation</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Relation</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>paintComponent</name>
+        <returnType>void</returnType>
+        <methodVisibility>protected</methodVisibility>
+        <parameters>
+        <parameter>Graphics</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawPackages</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawDottedArrow</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Point</parameter>
+        <parameter>Point</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawNodes</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawArrow</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Point</parameter>
+        <parameter>Point</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawFieldsAndMethods</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>String</parameter>
+        <parameter>int</parameter>
+        <parameter>int</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawEnumerationRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Enumeration</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawInterfaceRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Interface</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawAnnotationRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Annotation</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>drawClasseRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Graphics2D</parameter>
+        <parameter>Classe</parameter>
+        <parameter>List</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getClassHeightFromPosition</name>
+        <returnType>int</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
         </parameters>
       </Method>
     </Classe>
@@ -1032,40 +1231,9 @@
         <methodVisibility>public</methodVisibility>
       </Method>
       <Method>
-        <name>ajouterRelations</name>
+        <name>incrementIndentation</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>FileWriter</parameter>
-        <parameter>Object</parameter>
-        <parameter>List</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>writeMethod</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>FileWriter</parameter>
-        <parameter>MethodInfos</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>writeIndented</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>FileWriter</parameter>
-        <parameter>String</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>getNomElement</name>
-        <returnType>String</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Object</parameter>
-        </parameters>
       </Method>
       <Method>
         <name>creerFichierXmlVide</name>
@@ -1078,13 +1246,57 @@
         <methodVisibility>private</methodVisibility>
       </Method>
       <Method>
-        <name>incrementIndentation</name>
+        <name>writeIndented</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>FileWriter</parameter>
+        <parameter>String</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>writeMethod</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>FileWriter</parameter>
+        <parameter>MethodInfos</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>getNomElement</name>
+        <returnType>String</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Object</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>ajouterRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>FileWriter</parameter>
+        <parameter>Object</parameter>
+        <parameter>List</parameter>
+        </parameters>
       </Method>
     </Classe>
     <Classe name="XMLNode">
       <Field>node : Node (private)</Field>
+      <Method>
+        <name>firstChild</name>
+        <returnType>XMLNode</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>getIntAttribute</name>
+        <returnType>int</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
+        </parameters>
+      </Method>
       <Method>
         <name>getName</name>
         <returnType>String</returnType>
@@ -1116,40 +1328,10 @@
         <returnType>List</returnType>
         <methodVisibility>public</methodVisibility>
       </Method>
-      <Method>
-        <name>getIntAttribute</name>
-        <returnType>int</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>String</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>firstChild</name>
-        <returnType>XMLNode</returnType>
-        <methodVisibility>public</methodVisibility>
-      </Method>
     </Classe>
     <Classe name="XMLParser">
       <Method>
-        <name>parse</name>
-        <returnType>Project</returnType>
-        <methodVisibility>public</methodVisibility>
-        <parameters>
-        <parameter>String</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>ajouterRelation</name>
-        <returnType>void</returnType>
-        <methodVisibility>private</methodVisibility>
-        <parameters>
-        <parameter>Object</parameter>
-        <parameter>XMLNode</parameter>
-        </parameters>
-      </Method>
-      <Method>
-        <name>traiterInterface</name>
+        <name>traiterClasse</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
@@ -1167,7 +1349,7 @@
         </parameters>
       </Method>
       <Method>
-        <name>traiterClasse</name>
+        <name>traiterInterface</name>
         <returnType>void</returnType>
         <methodVisibility>private</methodVisibility>
         <parameters>
@@ -1192,6 +1374,23 @@
         <parameter>Object</parameter>
         </parameters>
       </Method>
+      <Method>
+        <name>ajouterRelation</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>Object</parameter>
+        <parameter>XMLNode</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>parse</name>
+        <returnType>Project</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String</parameter>
+        </parameters>
+      </Method>
       <Relation>
         <type>Utilisation</type>
         <destination>XMLNode</destination>
@@ -1212,6 +1411,32 @@
         <type>Utilisation</type>
         <destination>XMLNode</destination>
       </Relation>
+    </Classe>
+    <Classe name="XMLToXMIConverter">
+      <Field>cheminFichierXml : String (private final)</Field>
+      <Field>cheminFichierXmi : String (private final)</Field>
+      <Method>
+        <name>convertir</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+      </Method>
+      <Method>
+        <name>ajouterRelations</name>
+        <returnType>void</returnType>
+        <methodVisibility>private</methodVisibility>
+        <parameters>
+        <parameter>FileWriter</parameter>
+        <parameter>Element</parameter>
+        </parameters>
+      </Method>
+      <Method>
+        <name>main</name>
+        <returnType>void</returnType>
+        <methodVisibility>public</methodVisibility>
+        <parameters>
+        <parameter>String[]</parameter>
+        </parameters>
+      </Method>
     </Classe>
   </Classes>
 </Package>

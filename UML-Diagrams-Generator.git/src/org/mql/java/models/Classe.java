@@ -22,7 +22,7 @@ public class Classe {
         this.relationAgrégation = new Vector<>();
     }
 
-    // Getters and setters
+    
     public String getName() {
         return name;
     }

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/2.1" xmlns:uml="http://www.omg.org/spec/UML/2.1">
+    <xmi:Package xmi:id="Package1" name="org.mql.java.examples">
+        <uml:Class xmi:id="Classe1" name="Enseignant">
+            <uml:Attribute name="nom" visibility="private" type="String"/>
+            <uml:Attribute name="prenom" visibility="private" type="String"/>
+            <uml:Attribute name="matiereEnseignee" visibility="private" type="Matiere"/>
+            <uml:Attribute name="niveauEnseigne" visibility="private" type="NiveauScolaire"/>
+            <uml:Operation name="afficherIdentite" returnType="void" visibility="public"/>
+            <uml:Operation name="getIdentifiant" returnType="String" visibility="public"/>
+            <uml:Realization xmi:id="Realization" client="Enseignant" supplier="Personne"/>
+            <uml:Association xmi:id="Association" memberEnd="Enseignant, Matiere"/>
+            <uml:Association xmi:id="Association" memberEnd="Enseignant, NiveauScolaire"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe2" name="Etudiant">
+            <uml:Attribute name="nom" visibility="private" type="String"/>
+            <uml:Attribute name="prenom" visibility="private" type="String"/>
+            <uml:Attribute name="niveau" visibility="private" type="NiveauScolaire"/>
+            <uml:Attribute name="matierePreferee" visibility="private" type="Matiere"/>
+            <uml:Operation name="afficherIdentite" returnType="void" visibility="public"/>
+            <uml:Operation name="getIdentifiant" returnType="String" visibility="public"/>
+            <uml:Realization xmi:id="Realization" client="Etudiant" supplier="Personne"/>
+            <uml:Association xmi:id="Association" memberEnd="Etudiant, NiveauScolaire"/>
+            <uml:Association xmi:id="Association" memberEnd="Etudiant, Matiere"/>
+        </uml:Class>
+    </xmi:Package>
+    <xmi:Package xmi:id="Package2" name="org.mql.java.main">
+        <uml:Class xmi:id="Classe1" name="ConsoleDisplay">
+            <uml:Attribute name="projectPath" visibility="private" type="String"/>
+            <uml:Attribute name="xmlFilePath" visibility="private" type="String"/>
+            <uml:Operation name="exploreProject" returnType="void" visibility="private"/>
+            <uml:Operation name="generateXMLFile" returnType="void" visibility="private"/>
+            <uml:Operation name="parserXMLFile" returnType="void" visibility="private"/>
+            <uml:Operation name="main" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe2" name="UMLDiagramApp">
+            <uml:Attribute name="project" visibility="private" type="Project"/>
+            <uml:Operation name="main" returnType="void" visibility="public"/>
+        </uml:Class>
+    </xmi:Package>
+    <xmi:Package xmi:id="Package3" name="org.mql.java.models">
+        <uml:Class xmi:id="Classe1" name="Annotation">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="attributes" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationsUtilisation" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationAgrégation" visibility="private" type="Vector"/>
+            <uml:Attribute name="methods" visibility="private" type="Vector"/>
+            <uml:Operation name="getRelationsUtilisation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setAttributes" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="getRelationAgrégation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="addRelationAgrégation" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationAgrégation" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationsUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="setMethods" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getMethods" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+            <uml:Operation name="getAttributes" returnType="Vector" visibility="public"/>
+            <uml:Operation name="addMethod" returnType="void" visibility="public"/>
+            <uml:Operation name="addAttribute" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe2" name="Classe">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="fields" visibility="private" type="Vector"/>
+            <uml:Attribute name="methods" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationsHeritage" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationImplementation" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationUtilisation" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationAgrégation" visibility="private" type="Vector"/>
+            <uml:Operation name="getRelationUtilisation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="getRelationImplementation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="getRelationsHeritage" returnType="Vector" visibility="public"/>
+            <uml:Operation name="addField" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationsHeritage" returnType="void" visibility="public"/>
+            <uml:Operation name="getRelationAgrégation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setRelationImplementation" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationHeritage" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationImplementation" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationAgrégation" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationAgrégation" returnType="void" visibility="public"/>
+            <uml:Operation name="setMethods" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getFields" returnType="Vector" visibility="public"/>
+            <uml:Operation name="getMethods" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+            <uml:Operation name="addMethod" returnType="void" visibility="public"/>
+            <uml:Operation name="setFields" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe3" name="Enumeration">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="constants" visibility="private" type="List"/>
+            <uml:Attribute name="relationsUtilisation" visibility="private" type="Vector"/>
+            <uml:Attribute name="methods" visibility="private" type="Vector"/>
+            <uml:Operation name="getRelationsUtilisation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="getConstants" returnType="List" visibility="public"/>
+            <uml:Operation name="setConstants" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationsUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="setMethods" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getMethods" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+            <uml:Operation name="addConstant" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe4" name="Interface">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="methods" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationsHeritage" visibility="private" type="Vector"/>
+            <uml:Attribute name="relationUtilisation" visibility="private" type="Vector"/>
+            <uml:Operation name="getRelationUtilisation" returnType="Vector" visibility="public"/>
+            <uml:Operation name="getRelationsHeritage" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setRelationUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationUtilisation" returnType="void" visibility="public"/>
+            <uml:Operation name="setRelationsHeritage" returnType="void" visibility="public"/>
+            <uml:Operation name="addRelationHeritage" returnType="void" visibility="public"/>
+            <uml:Operation name="setMethods" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getMethods" returnType="Vector" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+            <uml:Operation name="addMethod" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe5" name="MethodInfos">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="returnType" visibility="private" type="String"/>
+            <uml:Attribute name="methodVisibility" visibility="private" type="String"/>
+            <uml:Attribute name="parameters" visibility="private" type="String"/>
+            <uml:Operation name="getMethodVisibility" returnType="String" visibility="public"/>
+            <uml:Operation name="getVisibility" returnType="String" visibility="private"/>
+            <uml:Operation name="setReturnType" returnType="void" visibility="public"/>
+            <uml:Operation name="setMethodVisibility" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="toString" returnType="String" visibility="public"/>
+            <uml:Operation name="getReturnType" returnType="String" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+            <uml:Operation name="getParameters" returnType="String" visibility="public"/>
+            <uml:Operation name="setParameters" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe6" name="Package">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="classes" visibility="private" type="List"/>
+            <uml:Attribute name="interfaces" visibility="private" type="List"/>
+            <uml:Attribute name="enumerations" visibility="private" type="List"/>
+            <uml:Attribute name="annotations" visibility="private" type="List"/>
+            <uml:Attribute name="sousPackages" visibility="private" type="List"/>
+            <uml:Operation name="getEnumerations" returnType="List" visibility="public"/>
+            <uml:Operation name="addAnnotation" returnType="void" visibility="public"/>
+            <uml:Operation name="addInterface" returnType="void" visibility="public"/>
+            <uml:Operation name="addEnumeration" returnType="void" visibility="public"/>
+            <uml:Operation name="getSousPackages" returnType="List" visibility="public"/>
+            <uml:Operation name="setSousPackages" returnType="void" visibility="public"/>
+            <uml:Operation name="setEnumerations" returnType="void" visibility="public"/>
+            <uml:Operation name="setAnnotations" returnType="void" visibility="public"/>
+            <uml:Operation name="setClasses" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getInterfaces" returnType="List" visibility="public"/>
+            <uml:Operation name="getClasses" returnType="List" visibility="public"/>
+            <uml:Operation name="getAnnotations" returnType="List" visibility="public"/>
+            <uml:Operation name="addClass" returnType="void" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+            <uml:Operation name="setInterfaces" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe7" name="Project">
+            <uml:Attribute name="name" visibility="private" type="String"/>
+            <uml:Attribute name="packages" visibility="private" type="List"/>
+            <uml:Operation name="addPackage" returnType="void" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getPackages" returnType="List" visibility="public"/>
+            <uml:Operation name="setName" returnType="void" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe8" name="Relation">
+            <uml:Attribute name="source" visibility="private" type="String"/>
+            <uml:Attribute name="destination" visibility="private" type="String"/>
+            <uml:Attribute name="type" visibility="private" type="String"/>
+            <uml:Operation name="getDestination" returnType="String" visibility="public"/>
+            <uml:Operation name="toString" returnType="String" visibility="public"/>
+            <uml:Operation name="getType" returnType="String" visibility="public"/>
+            <uml:Operation name="getSource" returnType="String" visibility="public"/>
+        </uml:Class>
+    </xmi:Package>
+    <xmi:Package xmi:id="Package4" name="org.mql.java.services">
+        <uml:Class xmi:id="Classe1" name="ProjectExplorer">
+            <uml:Attribute name="projet" visibility="private" type="Project"/>
+            <uml:Operation name="getProject" returnType="Project" visibility="public"/>
+            <uml:Operation name="aDesElements" returnType="boolean" visibility="private"/>
+            <uml:Operation name="explorerLeProjet" returnType="void" visibility="private"/>
+            <uml:Operation name="explorerLeDossier" returnType="void" visibility="private"/>
+            <uml:Operation name="ajouterChamps" returnType="void" visibility="private"/>
+            <uml:Operation name="ajouterElementAuPackage" returnType="void" visibility="private"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe2" name="RelationExplorer">
+            <uml:Attribute name="packageRacineProjet" visibility="private" type="String"/>
+            <uml:Operation name="genererRelations" returnType="List" visibility="public"/>
+            <uml:Operation name="traiterHeritage" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterMethodes" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterChamps" returnType="void" visibility="private"/>
+            <uml:Operation name="appartientAuProjet" returnType="boolean" visibility="private"/>
+            <uml:Operation name="traiterRelationsInterface" returnType="void" visibility="private"/>
+            <uml:Operation name="ajouterRelationAnnotation" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterRelationsClasse" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterRelationsAnnotation" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterInterfacesImplémentées" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterToutesLesAnnotations" returnType="void" visibility="private"/>
+            <uml:Operation name="getNomElement" returnType="String" visibility="private"/>
+        </uml:Class>
+    </xmi:Package>
+    <xmi:Package xmi:id="Package5" name="org.mql.java.ui">
+        <uml:Class xmi:id="Classe1" name="DiagramPanel">
+            <uml:Attribute name="project" visibility="private" type="Project"/>
+            <uml:Attribute name="nodePositions" visibility="private" type="Map"/>
+            <uml:Operation name="getClassHeight" returnType="int" visibility="private"/>
+            <uml:Operation name="getClassHeight" returnType="int" visibility="private"/>
+            <uml:Operation name="getClassHeight" returnType="int" visibility="private"/>
+            <uml:Operation name="getClassHeight" returnType="int" visibility="private"/>
+            <uml:Operation name="drawRelation" returnType="void" visibility="private"/>
+            <uml:Operation name="paintComponent" returnType="void" visibility="protected"/>
+            <uml:Operation name="drawPackages" returnType="void" visibility="private"/>
+            <uml:Operation name="drawRelations" returnType="void" visibility="private"/>
+            <uml:Operation name="drawDottedArrow" returnType="void" visibility="private"/>
+            <uml:Operation name="drawNodes" returnType="void" visibility="private"/>
+            <uml:Operation name="drawArrow" returnType="void" visibility="private"/>
+            <uml:Operation name="drawFieldsAndMethods" returnType="void" visibility="private"/>
+            <uml:Operation name="drawEnumerationRelations" returnType="void" visibility="private"/>
+            <uml:Operation name="drawInterfaceRelations" returnType="void" visibility="private"/>
+            <uml:Operation name="drawAnnotationRelations" returnType="void" visibility="private"/>
+            <uml:Operation name="drawClasseRelations" returnType="void" visibility="private"/>
+            <uml:Operation name="getClassHeightFromPosition" returnType="int" visibility="private"/>
+        </uml:Class>
+    </xmi:Package>
+    <xmi:Package xmi:id="Package6" name="org.mql.java.xml">
+        <uml:Class xmi:id="Classe1" name="XMLFileGenerator">
+            <uml:Attribute name="cheminFichier" visibility="private" type="String"/>
+            <uml:Attribute name="indentationLevel" visibility="private" type="int"/>
+            <uml:Operation name="ajouterPackageAuXml" returnType="void" visibility="public"/>
+            <uml:Operation name="fermerXml" returnType="void" visibility="public"/>
+            <uml:Operation name="ajouterDeclarationXmlAuDebut" returnType="void" visibility="public"/>
+            <uml:Operation name="incrementIndentation" returnType="void" visibility="private"/>
+            <uml:Operation name="creerFichierXmlVide" returnType="void" visibility="private"/>
+            <uml:Operation name="decrementIndentation" returnType="void" visibility="private"/>
+            <uml:Operation name="writeIndented" returnType="void" visibility="private"/>
+            <uml:Operation name="writeMethod" returnType="void" visibility="private"/>
+            <uml:Operation name="getNomElement" returnType="String" visibility="private"/>
+            <uml:Operation name="ajouterRelations" returnType="void" visibility="private"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe2" name="XMLNode">
+            <uml:Attribute name="node" visibility="private" type="Node"/>
+            <uml:Operation name="firstChild" returnType="XMLNode" visibility="public"/>
+            <uml:Operation name="getIntAttribute" returnType="int" visibility="public"/>
+            <uml:Operation name="getName" returnType="String" visibility="public"/>
+            <uml:Operation name="getValue" returnType="String" visibility="public"/>
+            <uml:Operation name="child" returnType="XMLNode" visibility="public"/>
+            <uml:Operation name="getAttribute" returnType="String" visibility="public"/>
+            <uml:Operation name="children" returnType="List" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe3" name="XMLParser">
+            <uml:Operation name="traiterClasse" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterAnnotation" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterInterface" returnType="void" visibility="private"/>
+            <uml:Operation name="traiterEnum" returnType="void" visibility="private"/>
+            <uml:Operation name="getNomElement" returnType="String" visibility="private"/>
+            <uml:Operation name="ajouterRelation" returnType="void" visibility="private"/>
+            <uml:Operation name="parse" returnType="Project" visibility="public"/>
+        </uml:Class>
+        <uml:Class xmi:id="Classe4" name="XMLToXMIConverter">
+            <uml:Attribute name="cheminFichierXml" visibility="private" type="String"/>
+            <uml:Attribute name="cheminFichierXmi" visibility="private" type="String"/>
+            <uml:Operation name="convertir" returnType="void" visibility="public"/>
+            <uml:Operation name="ajouterRelations" returnType="void" visibility="private"/>
+            <uml:Operation name="main" returnType="void" visibility="public"/>
+        </uml:Class>
+    </xmi:Package>
+</xmi:XMI>

@@ -81,7 +81,7 @@ public class XMLFileGenerator {
             writeIndented(writer, "<Package name=\"" + pkg.getName() + "\">");
             incrementIndentation();
 
-            // Ajouter les classes
+            
             if (!pkg.getClasses().isEmpty()) {
                 writeIndented(writer, "<Classes>");
                 incrementIndentation();
@@ -225,7 +225,13 @@ public class XMLFileGenerator {
     public void fermerXml() {
         try (FileWriter writer = new FileWriter(cheminFichier, true)) {
             try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
-                String content = reader.lines().reduce("", String::concat);
+            	StringBuilder contentBuilder = new StringBuilder();
+            	String line;
+            	while ((line = reader.readLine()) != null) {
+            	    contentBuilder.append(line);
+            	}
+            	String content = contentBuilder.toString();
+
                 if (!content.contains("</Packages>")) {
                     writeIndented(writer, "</Packages>");
                 }

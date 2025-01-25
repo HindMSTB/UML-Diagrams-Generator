@@ -48,9 +48,7 @@ public class XMLParser {
                     for (XMLNode enumNode : sectionNode.children()) {
                         traiterEnum(pkg, enumNode);
                     }
-                } else {
-                    System.err.println("Type inconnu pour le nœud : " + sectionNode.getName());
-                }
+                } 
             }
 
             project.addPackage(pkg);
@@ -62,7 +60,7 @@ public class XMLParser {
     private void traiterClasse(Package pkg, XMLNode elementNode) {
         Classe classe = new Classe(elementNode.getAttribute("name"));
         if (classe.getName() == null || classe.getName().isEmpty()) {
-            System.err.println("Erreur : une classe sans nom a été trouvée.");
+            System.out.println("Erreur : une classe sans nom a été trouvée.");
             return;
         }
 
@@ -96,7 +94,7 @@ public class XMLParser {
             } else if (childNode.getName().equals("Relation")) {
                 ajouterRelation(classe, childNode);
             } else {
-                System.err.println("Type inconnu pour le nœud enfant : " + childNode.getName());
+                System.out.println("Type inconnu pour le nœud enfant : " + childNode.getName());
             }
         }
 
@@ -139,7 +137,7 @@ public class XMLParser {
             } else if (childNode.getName().equals("Relation")) {
                 ajouterRelation(inter, childNode);
             } else {
-                System.err.println("Type inconnu pour le nœud enfant : " + childNode.getName());
+                System.out.println("Type inconnu pour le nœud enfant : " + childNode.getName());
             }
         }
 
@@ -175,7 +173,7 @@ public class XMLParser {
             } else if (childNode.getName().equals("Relation")) {
                 ajouterRelation(enumeration, childNode);
             } else {
-                System.err.println("Type inconnu pour le nœud enfant : " + childNode.getName());
+                System.out.println("Type inconnu pour le nœud enfant : " + childNode.getName());
             }
         }
 
